@@ -1,6 +1,7 @@
 body {
     font-family: Arial;
     padding-top: 100px;
+    background-color: #dfe3ee;
 }
 
 footer {
@@ -18,3 +19,45 @@ footer {
 .accountform {
     padding-top: 20px;
 }
+
+.navbar {
+    background-color: #003c63;
+
+}
+
+.row {
+    background-color: #dfe3ee;
+}
+
+.thumbnail {
+    border : none;
+    background-color: #dfe3ee;
+}
+
+.amazon {
+    background-color: #e9ebee;
+   
+}
+
+.card-button {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.price {
+    color: red;
+    text-align: justify;
+    
+}
+
+.inline {
+    display: inline-block;
+}
+
+.quantity {
+    width: 20%;
+    margin-left: 20%;
+}
+

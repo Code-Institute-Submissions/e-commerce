@@ -1,58 +1,66 @@
 {% extends "home/base.html" %}
-{% load bootstrap_tags %}
 {% block content %}
       <div class="row">
 
         <div class="col-lg-12">
 
-          <div class="card mt-4">
-            <img width="900" height="400" class="card-img-top img-fluid" src="{{MEDIA_URL}}{{product.image}}" alt="">
+          <div class="card col-md-4 phone">
+            <img  class="card-img-top img-fluid book-image" src="{{MEDIA_URL}}{{product.image}}" alt="" width="80%">
+          </div>
+          <div class="col-md-5">
             <div class="card-body">
               <h3 class="card-title">{{product.name}}</h3>
-              <h4>€{{product.price}}</h4>
               <p class="card-text">{{product.description}}</p>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
+              <span class="text-warning">
+                {% if product.stars %}
+                {% for star in product.stars %}
+                <i class="fa fa-star"></i>
+                {% endfor %}
+                {% if product.needs_half_star %}
+                <i class="fa fa-star-half"></i>
+                {% endif %}        
+                {% else %}
+                <p>No reviews yet</p>
+                {% endif  %}
+              </span>
             </div>
           </div>
-          <!-- /.card -->
           
-          <div>
-            <form action="{% url 'add_to_cart' %}" method="post">
+          <div class="col-md-3 amazon">
+            
+            <div class="price">
+            <h4>€{{product.price}}</h4>
+            </div>
+          
+            <i class="far fa-check-circle"></i>
+            <h5 class = "inline">In stock online </h5>
+            <h5>Delivery 2-5 working days.</h5>
+
+            
+             <form class = "quantity-modify"action="{% url 'add_to_cart' %}" method="post">
               {% csrf_token %}
               <input type="hidden" name="id" value="{{product.id}}"/>
-              <input type="hidden" name="quantity" value="1"/>
-              <input class="btn btn-success" type="submit" value="Add To Cart"/>
+              <h5 class = "inline">Quantity</h5>
+              <input class = "quantity" type="number" name="quantity" value="1"/>
+              <input class="btn btn-success card-button" type="submit" value="Add To Cart"/>
             </form>
+            
           </div>
           
-          <div class="card card-outline-secondary my-4">
-            <div class="card-header">
-              <h2>Product Reviews</h2>
-            </div>
-            <div class="card-body">
-
-              {% for review in product.reviews_received.all %}
-              <p>{{review.content}}</p>
-              <p><small >Rating {{review.rating}}</small></p>
-              <p><small class="text-muted">Posted by {{review.reviewer.username}}</small></p>
-              <hr>
-              {%endfor%}
-              
-              <form method="post" action="{% url 'add_a_review' %}">
-                {% csrf_token %}
-                
-                {{ review_form | as_bootstrap }}
-                
-                <input type="hidden" name="product" value="{{product.id}}"/>
-                <input type="submit" class="btn btn-success" value="Leave Review"/>
-              </form>
-            </div>
           </div>
           <!-- /.card -->
+          </div>
 
+          <div class="row">
+            
+          {% include "reviews/_show_reviews.html" %}
+
+        {% if user.is_authenticated %}
+          {% include "reviews/_add_review_form.html" %}
+        {% endif %}
+        
         </div>
         <!-- /.col-lg-9 -->
 
-      </div>
+      
 {% endblock content %}

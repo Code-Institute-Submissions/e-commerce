@@ -6,7 +6,7 @@
     {% for product in products %}
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{MEDIA_URL}}{{product.image}}" alt="">
+                            <img src="{{MEDIA_URL}}{{product.image}}" alt="" width="70%" class="book-image-list">
                             <div class="caption">
                                 <h4 class="pull-right">€{{product.price}}</h4>
                                 <h4><a href="{% url 'product_item' product.id %}">{{product.name}}</a>
@@ -16,11 +16,16 @@
                             <div class="ratings">
                                 <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    {% if product.stars %}
+                                    {% for star in product.stars %}
+                                    <i class="fa fa-star"></i>
+                                    {% endfor %}
+                                    {% if product.needs_half_star %}
+                                    <i class="fa fa-star-half"></i>
+                                    {% endif %}        
+                                    {% else %}
+                                    <p>No reviews yet</p>
+                                    {% endif  %}
                                 </p>
                             </div>
                         </div>
