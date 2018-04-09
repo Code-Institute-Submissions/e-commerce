@@ -4,6 +4,27 @@ body {
     background-color: #dfe3ee;
 }
 
+
+h1,h2,h3,h4,h5,h6 {
+ 
+    font-family: 'Nunito', sans-serif;
+    
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    /*color: white;*/
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 footer {
     margin-top: 40px;
     padding-top: 40px;

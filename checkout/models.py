@@ -3,8 +3,10 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from products.models import Product
+from django.contrib.auth.models import User
 
 class Order(models.Model):
+    user = models.ForeignKey(User, null=True, related_name="orders")
     full_name = models.CharField(max_length=50, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)
     country = models.CharField(max_length=40, blank=False)
@@ -20,8 +22,8 @@ class Order(models.Model):
         
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False)
-    product = models.ForeignKey(Product, null=False)
+    order = models.ForeignKey(Order, null=False, related_name="line_items")
+    product = models.ForeignKey(Product, null=False, related_name="order_line_items")
     quantity = models.IntegerField(blank=False)
     
     def __str__(self):

@@ -6,13 +6,17 @@ from products.models import Product
 from decimal import Decimal
 from cart.utils import get_cart_items_and_total
 from django.utils import timezone
-from .models import OrderLineItem
+from .models import OrderLineItem,Order
 import stripe
 from django.contrib import messages
 
 
 # Create your views here.
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+def view_order(request,id):
+    order = get_object_or_404(Order, pk=id)
+    return render(request, "checkout/view_order.html", {'order': order })
 
 def checkout(request):
     if request.method=="POST":

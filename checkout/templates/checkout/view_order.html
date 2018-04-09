@@ -1,0 +1,29 @@
+{% extends "home/base.html" %}
+{% load static from staticfiles %}
+
+
+
+{% block content %}
+
+    <div class="previous_orders">
+
+    <h1>View order</h1>
+    <p>{{order.full_name}}</p>
+    <p>{{order.phone_number}}</p>
+    <p>{{order.country}}</p>
+    <p>{{order.town_or_city}}</p>
+    <p>{{order.street_address_1}}</p>
+    <p>{{order.street_address_2}}</p>
+    <p>{{order.county}}</p>
+    <p>{{order.date}}</p>
+    
+    </div>
+    
+    {% for line_item in order.line_items.all %}
+   
+    {{line_item}}
+    
+    {% endfor %}
+    
+{% endblock %}
+

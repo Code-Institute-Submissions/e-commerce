@@ -1,5 +1,14 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
+    <h1>Previous Orders</h1>
+    
+    
+        
+    {% for order in user.orders.all %}
+    <p><a href="{% url 'show_order_details' order.id  %}">{{ order }}</a></p>
+    
+    {% endfor %}
+    
     
 {% endblock content %}
