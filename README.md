@@ -1,7 +1,7 @@
 
 ### Overview
 General information
-  This is Cristian Burloiu's third project for Code Institure bootcamp, Dublin, Ireland January-April 2018. It is a fully functional ecommerce application written in Python and Django as a framework.
+  This is Cristian Burloiu's third project for Code Institute bootcamp, Dublin, Ireland January-April 2018. It is a fully functional ecommerce application written in Python and Django as a framework.
 
   Git repository can be seen at (https://github.com/CristianBurloiu/e-commerce). Live version can be seen at (https://e-commerce-attempt.herokuapp.com/).
 
